@@ -9,6 +9,7 @@ export default function ArticleCard(props) {
       <p>Favourites: {article.numFavourites}</p>
       <img src={article.coverUrl} />
       <Link href={`/articles/${article.id}`}><p>Title:{article.title}</p></Link>
+      <p>Tags: {article.tags}</p>
     </div>
   )
 }

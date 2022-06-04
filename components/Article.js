@@ -9,6 +9,7 @@ export default function Article(props) {
       <p>Title: {article.title}</p>
       <p>Subtitle: {article.subtitle}</p>
       <p>Content: {article.content}</p>
+      <p>Tgas: {article.tags}</p>
     </div>
   )
 }

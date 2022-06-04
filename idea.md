@@ -10,3 +10,4 @@ title
 subtitle
 content
 numFavourites
+tags
