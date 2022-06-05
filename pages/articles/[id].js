@@ -1,9 +1,10 @@
 import Head from 'next/head'
-import { useRouter } from 'next/router'
+import getArticle from '../api/article'
+import Article from '../../components/Article'
+import { getArticleIds } from '../api/articles';
 
-export default function ArticlePage() {
-  const router = useRouter();
-  const id = router.query.id;
+export default function ArticlePage(props) {
+  const article = props.article;
   return (
     <div>
       <Head>
@@ -11,47 +12,34 @@ export default function ArticlePage() {
         <meta name="description" content="Read about anything & everything from nextX Feed." />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <p>Article id: {id}</p>
+      <Article article={article} />
     </div>
   )
 }
 
 // For static generated - dynamic pages
 export async function getStaticPaths() {
+  const ids = await getArticleIds();
   return {
     // If fallback false, all other pages: 404
     //  If fallback true, all other pages are then generated on server on request
-    fallback: false,
+    //  If blocking, these generated pages are cached
+    fallback: 'blocking',
     // Build static pages for following dynamic pages
-    paths: [
-      {
-        params: {
-          id: '1',
-        }
-      },
-      {
-        params: {
-          id: '2',
-        }
+    paths: ids.map((id) => ({
+      params: {
+        id: id,
       }
-    ]
+    }))
   }
 }
 
 export async function getStaticProps(context) {
   const id = context.params.id;
+  const article = await getArticle(id);
   return {
     props: {
-      articles: {
-        id: 1,
-        coverUrl: 'https://images.unsplash.com/photo-1656663584992-e1f24fe5eae5?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwzfHx8ZW58MHx8fHw%3D&auto=format&fit=crop&w=500&q=60',
-        dateCreated: '2022-06-01',
-        title: 'Title 1',
-        tags: ['t1', 'one'],
-        subtitle: 'Subtitle 1',
-        content: 'Content 1',
-        numFavourites: 1,
-      },
+      article: article
     },
   }
 }

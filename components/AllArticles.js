@@ -6,7 +6,7 @@ export default function AllArticles(props) {
   return (
     <Fragment>
       {
-        articles.map((a) => <ArticleCard article={a} />)
+        articles.map((a) => <ArticleCard key={a.id} article={a} />)
       }
     </Fragment>
   )

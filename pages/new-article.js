@@ -1,7 +1,10 @@
 import Head from 'next/head'
-import NewArticle from '../components/NewArticle'
+import { useRouter } from 'next/router';
+import NewArticle from '../components/NewArticle';
 
 export default function NewArticlePage() {
+  const router = useRouter();
+
   async function addArticleHandler(article) {
     const response = await fetch('/api/new-article', {
       method: 'POST',
@@ -12,6 +15,7 @@ export default function NewArticlePage() {
     });
     const data = await response.json()
     console.log(data)
+    router.push('/')
   }
 
   return (
