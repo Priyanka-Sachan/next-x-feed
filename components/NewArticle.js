@@ -1,9 +1,10 @@
-import { useRef } from "react";
+import { useRef, useState } from "react";
+import { TextInput, Button, MultiSelect } from '@mantine/core';
 
-export default function NewArticle(props) {
+export default function NewArticle() {
   const coverUrl = useRef('');
   const title = useRef('');
-  const tags = useRef([]);
+  const [tags, setTags] = useState(['Top', 'Reading', 'For Self', 'For Ones', 'For World']);
   const subtitle = useRef('');
   const content = useRef('');
 
@@ -13,27 +14,30 @@ export default function NewArticle(props) {
       coverUrl: coverUrl.current.value,
       dateCreated: Date.now(),
       title: title.current.value,
-      tags: ['default-tags', 'new']/*tags.current.value*/,
+      tags: tags,
       subtitle: subtitle.current.value,
       content: content.current.value,
       numFavourites: 0,
     }
-    props.onAddArticle(article);
+    // props.onAddArticle(article);
   }
 
   return (
     <form onSubmit={submitArticle}>
-      <p>CoverUrl</p>
-      <input ref={coverUrl} type="url" name="coverUrl"></input>
-      <p>Title</p>
-      <input ref={title} type="text" name="title"></input>
-      <p>Tags</p>
-      <input ref={tags} type="text" name="tags"></input>
-      <p>Subtitle</p>
-      <input ref={subtitle} type="text" name="subtitle"></input>
-      <p>Content</p>
-      <input ref={content} type="text" name="content"></input>
-      <button type="submit">Add</button>
+      <TextInput ref={coverUrl} type="url" label="Cover Url" required />
+      <TextInput ref={title} type="text" label="Title" required />
+      <MultiSelect
+        label="Tags"
+        data={tags}
+        searchable
+        creatable
+        getCreateLabel={(query) => `+ Create ${query}`}
+        onCreate={(query) => setTags((current) => [...current, query])}
+        nothingFound="Nothing found..."
+      />
+      <TextInput ref={subtitle} type="text" label="Subtitle" required />
+      <TextInput ref={content} type="text" label="Content" required />
+      <Button type="submit">Add</Button>
     </form>
   )
 }
