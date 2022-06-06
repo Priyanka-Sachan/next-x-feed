@@ -25,7 +25,6 @@ export default function NewArticlePage() {
         <meta name="description" content="Add article" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <p>Add Article</p>
       <NewArticle onAddArticle={addArticleHandler} />
     </div>
   )
