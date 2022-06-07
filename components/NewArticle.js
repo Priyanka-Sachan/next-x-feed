@@ -1,6 +1,8 @@
 import { useEffect, useRef, useState } from "react";
-import { TextInput, Button, MultiSelect, ActionIcon, JsonInput, Image, SimpleGrid } from '@mantine/core';
+import { TextInput, Button, MultiSelect, ActionIcon, SimpleGrid, Textarea } from '@mantine/core';
 import { ArrowRight } from 'tabler-icons-react';
+import RichTextEditor from './RichTextEditor';
+import styles from './NewArticle.module.css'
 
 export default function NewArticle() {
   const coverUrl = useRef('');
@@ -9,9 +11,9 @@ export default function NewArticle() {
     setCoverImage(coverUrl.current.value);
   }, [coverUrl.current.value]);
   const title = useRef('');
-  const [tags, setTags] = useState(['Top', 'Reading', 'For Self', 'For Ones', 'For World']);
+  const [tags, setTags] = useState(['Head to Head', 'Months Past', 'History Matters', 'Out of the Margins', 'Behind the Times']);
   const subtitle = useRef('');
-  const content = useRef('');
+  const [content, setContent] = useState('');
 
   function submitArticle(event) {
     event.preventDefault()
@@ -21,9 +23,10 @@ export default function NewArticle() {
       title: title.current.value,
       tags: tags,
       subtitle: subtitle.current.value,
-      content: content.current.value,
+      content: content,
       numFavourites: 0,
     }
+    // console.log(article)
     props.onAddArticle(article);
   }
 
@@ -39,8 +42,11 @@ export default function NewArticle() {
         { maxWidth: 755, cols: 1, spacing: 'sm' },
       ]}>
       <div>
-        <Image src={coverImage} />
-        <TextInput ref={coverUrl} type="url" placeholder="Cover Url" required
+        <img className={styles.coverImage} src={coverImage} />
+        <TextInput ref={coverUrl}
+          type="url"
+          placeholder="Cover Url"
+          required
           rightSection={
             <ActionIcon size={24} radius="xl" variant="filled">
               <ArrowRight size={18} onClick={updateCoverImage} />
@@ -48,22 +54,49 @@ export default function NewArticle() {
           } />
       </div>
       <form onSubmit={submitArticle}>
-        <TextInput ref={title} type="text" placeholder="Title" variant="unstyled" size="xl" required />
-        <TextInput ref={subtitle} type="text" placeholder="Subtitle" variant="unstyled" size="lg" required />
-        <MultiSelect placeholder="Tags" data={tags} searchable creatable
+        <Textarea
+          ref={title}
+          placeholder="Title"
+          styles={{
+            input: {
+              fontSize: '2em',
+              fontFamily: 'Lora',
+              fontStyle: 'italic',
+              fontWeight: '600'
+            },
+          }}
+          variant="unstyled"
+          autosize
+          required />
+        <Textarea
+          ref={subtitle}
+          placeholder="Subtitle"
+          styles={{
+            input: {
+              fontSize: '1.5em',
+              fontFamily: 'Lora',
+              color: 'grey'
+            },
+          }}
+          variant="unstyled"
+          autosize
+          required />
+        <MultiSelect data={tags}
+          placeholder="Tags"
+          searchable
+          creatable
           getCreateLabel={(query) => `+ Create ${query}`}
           onCreate={(query) => setTags((current) => [...current, query])}
           nothingFound="Nothing found..." variant="unstyled" size="lg" />
-        <JsonInput
-          ref={content}
-          placeholder="Content"
-          formatOnBlur
-          autosize
-          minRows={4}
-          variant="unstyled"
-          required
-        />
-        <Button type="submit">Add</Button>
+        <RichTextEditor
+          value={content}
+          onChange={setContent}
+          styles={{
+            root: { border: 'none', minHeight: '70vh', fontSize: '20px', fontFamily: 'Lato' },
+            toolbarInner: { justifyContent: 'center' },
+          }}
+          readOnly={false} />
+        <Button type="submit" fullWidth variant="default">Add</Button>
       </form>
     </SimpleGrid>
   )
