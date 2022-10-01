@@ -1,0 +1,19 @@
+.coverUrl{
+  width: 100%;
+}
+
+.title {
+  font-size: 2em;
+  font-family: 'Lora';
+  font-style: italic;
+  font-weight: 600;
+}
+
+.dateCreated{
+  color: grey;
+}
+
+.subtitle {
+  max-lines: 3;
+  text-overflow: ellipsis;
+}
