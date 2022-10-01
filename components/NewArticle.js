@@ -4,30 +4,33 @@ import { ArrowRight } from 'tabler-icons-react';
 import RichTextEditor from './RichTextEditor';
 import styles from './NewArticle.module.css'
 
-export default function NewArticle() {
+export default function NewArticle(props) {
   const coverUrl = useRef('');
   const [coverImage, setCoverImage] = useState('');
   useEffect(() => {
     setCoverImage(coverUrl.current.value);
   }, [coverUrl.current.value]);
   const title = useRef('');
-  const [tags, setTags] = useState(['Head to Head', 'Months Past', 'History Matters', 'Out of the Margins', 'Behind the Times']);
+  const [allTags, setAllTags] = useState(['Head to Head', 'Months Past', 'History Matters', 'Out of the Margins', 'Behind the Times']);
+  const [tags, setTags] = useState([]);
   const subtitle = useRef('');
   const [content, setContent] = useState('');
 
   function submitArticle(event) {
     event.preventDefault()
-    const article = {
-      coverUrl: coverUrl.current.value,
-      dateCreated: Date.now(),
-      title: title.current.value,
-      tags: tags,
-      subtitle: subtitle.current.value,
-      content: content,
-      numFavourites: 0,
-    }
-    // console.log(article)
-    props.onAddArticle(article);
+    console.log(allTags)
+    console.log(tags)
+    // const article = {
+    //   coverUrl: coverUrl.current.value,
+    //   dateCreated: Date.now(),
+    //   title: title.current.value,
+    //   tags: tags,
+    //   subtitle: subtitle.current.value,
+    //   content: content,
+    //   numFavourites: 0,
+    // }
+    // // console.log(article)
+    // props.onAddArticle(article);
   }
 
   function updateCoverImage() {
@@ -81,12 +84,14 @@ export default function NewArticle() {
           variant="unstyled"
           autosize
           required />
-        <MultiSelect data={tags}
+        <MultiSelect data={allTags}
           placeholder="Tags"
           searchable
           creatable
+          value={tags}
+          onChange={setTags}
           getCreateLabel={(query) => `+ Create ${query}`}
-          onCreate={(query) => setTags((current) => [...current, query])}
+          onCreate={(query) => setAllTags((current) => [...current, query])}
           nothingFound="Nothing found..." variant="unstyled" size="lg" />
         <RichTextEditor
           value={content}
