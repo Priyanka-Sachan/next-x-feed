@@ -18,19 +18,17 @@ export default function NewArticle(props) {
 
   function submitArticle(event) {
     event.preventDefault()
-    console.log(allTags)
-    console.log(tags)
-    // const article = {
-    //   coverUrl: coverUrl.current.value,
-    //   dateCreated: Date.now(),
-    //   title: title.current.value,
-    //   tags: tags,
-    //   subtitle: subtitle.current.value,
-    //   content: content,
-    //   numFavourites: 0,
-    // }
-    // // console.log(article)
-    // props.onAddArticle(article);
+    const article = {
+      coverUrl: coverUrl.current.value,
+      dateCreated: Date.now(),
+      title: title.current.value,
+      tags: tags,
+      subtitle: subtitle.current.value,
+      content: content,
+      numFavourites: 0,
+    }
+    // console.log(article)
+    props.onAddArticle(article);
   }
 
   function updateCoverImage() {

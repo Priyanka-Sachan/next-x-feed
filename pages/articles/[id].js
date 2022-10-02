@@ -1,5 +1,5 @@
 import Head from 'next/head'
-import getArticle from '../api/article'
+import {getArticleById} from '../api/article'
 import Article from '../../components/Article'
 import { getArticleIds } from '../api/articles';
 
@@ -36,7 +36,7 @@ export async function getStaticPaths() {
 
 export async function getStaticProps(context) {
   const id = context.params.id;
-  const article = await getArticle(id);
+  const article = await getArticleById(id);
   return {
     props: {
       article: article

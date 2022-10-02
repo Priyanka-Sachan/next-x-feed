@@ -1,6 +1,6 @@
 import { MongoClient, ObjectId } from 'mongodb';
 
-export default async function getArticle(id) {
+async function getArticleById(id) {
   try {
     const client = await MongoClient.connect('mongodb+srv://author:UqQHha2e12qbius6@cluster0.58skw0h.mongodb.net/articles?retryWrites=true&w=majority');
     const db = client.db();
@@ -22,3 +22,5 @@ export default async function getArticle(id) {
     console.log(e)
   }
 }
+
+export { getArticleById }
