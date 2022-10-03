@@ -10,7 +10,7 @@ export default async function addNewArticle(req, res) {
       const result = await articlesCollection.insertOne(data);
       console.log(result);
       client.close();
-      res.status(201).json({message: 'Article added.'});
+      res.status(201).json({ message: 'Article added.' });
     } catch (e) {
       console.log(e)
     }

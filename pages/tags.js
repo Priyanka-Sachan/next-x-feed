@@ -3,21 +3,9 @@ import Head from 'next/head'
 import { useRouter } from 'next/router';
 import getTags from './api/tags';
 import { Chips } from '@mantine/core';
+import { useState } from 'react';
 export default function TagsPage(props) {
   const router = useRouter();
-
-  async function addArticleHandler(article) {
-    const response = await fetch('/api/new-article', {
-      method: 'POST',
-      body: JSON.stringify(article),
-      headers: {
-        'Content-Type': 'application/json'
-      }
-    });
-    const data = await response.json()
-    console.log(data)
-    router.push('/')
-  }
 
   return (
     <div>
@@ -27,7 +15,8 @@ export default function TagsPage(props) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Container>
-        <Chips position="center" multiple={false}>
+        <h1>#Tags</h1>
+        <Chips position="center" multiple={false} onChange={(tag) => router.push('/tagged/' + tag)}>
           {props.tags.map((tag) => <Chip value={tag}>{tag}</Chip>)}
         </Chips>
       </Container>
