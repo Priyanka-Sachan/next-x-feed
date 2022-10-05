@@ -1,15 +1,18 @@
+import { Badge, Container } from "@mantine/core"
+import styles from './Article.module.css'
+
 export default function Article(props) {
   const article = props.article
+  var options = { year: 'numeric', month: 'long', day: 'numeric' };
+  const dateCreated = new Date(article.dateCreated)
   return (
-    <div>
-      <p>Id: {article.id}</p>
-      <p>DateCreated: {article.dateCreated}</p>
-      <p>Favourites: {article.numFavourites}</p>
-      <img src={article.coverUrl}/>
-      <p>Title: {article.title}</p>
-      <p>Subtitle: {article.subtitle}</p>
-      <p>Content: {article.content}</p>
-      <p>Tgas: {article.tags}</p>
-    </div>
+    <Container>
+      <h1>{article.title}</h1>
+      <p className={styles.dateCreated}>{dateCreated.toLocaleDateString('en-US', options)}</p>
+      <img className={styles.coverUrl} src={article.coverUrl} />
+      <h3>{article.subtitle}</h3>
+      <p dangerouslySetInnerHTML={{ __html: article.content }} ></p>
+      {article.tags.map((tag) => <Badge value={tag}>{tag}</Badge>)}
+    </Container>
   )
 }
