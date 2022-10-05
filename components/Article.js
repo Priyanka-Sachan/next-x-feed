@@ -12,7 +12,7 @@ export default function Article(props) {
       <img className={styles.coverUrl} src={article.coverUrl} />
       <h3>{article.subtitle}</h3>
       <p dangerouslySetInnerHTML={{ __html: article.content }} ></p>
-      {article.tags.map((tag) => <Badge value={tag}>{tag}</Badge>)}
+      {article.tags.map((tag) => <Badge key={tag}>{tag}</Badge>)}
     </Container>
   )
 }

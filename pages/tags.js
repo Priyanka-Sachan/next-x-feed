@@ -17,7 +17,7 @@ export default function TagsPage(props) {
       <Container>
         <h1>#Tags</h1>
         <Chips position="center" multiple={false} onChange={(tag) => router.push('/tagged/' + tag)}>
-          {props.tags.map((tag) => <Chip value={tag}>{tag}</Chip>)}
+          {props.tags.map((tag) => <Chip key={tag} value={tag}>{tag}</Chip>)}
         </Chips>
       </Container>
     </div>

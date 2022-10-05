@@ -15,7 +15,7 @@ export default function ArticleCard(props) {
       <p>Favourites: {article.numFavourites}</p>
       <p className={styles.subtitle}> {article.subtitle}</p>
       {
-        article.tags.map((tag) => (<Badge color="gray" size="lg" radius="md" variant="outline">{tag}</Badge>))
+        article.tags.map((tag) => (<Badge key={tag} color="gray" size="lg" radius="md" variant="outline">{tag}</Badge>))
       }
     </div>
   )
