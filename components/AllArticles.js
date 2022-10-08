@@ -1,4 +1,3 @@
-import { Container } from "@mantine/core"
 import ArticleCard from "./ArticleCard"
 
 export default function AllArticles(props) {

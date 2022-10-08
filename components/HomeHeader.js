@@ -1,15 +1,7 @@
 import Link from "next/link"
-import Image from 'next/image';
 
 export default function HomeHeader() {
   return (
-    // <div className="prose prose:slate">
-    //   <Image src="/images/logo.png" alt="me" width="64" height="64" />
-    //   <h1>next-X-feed</h1>
-    //   <Link href='./new-article'>New</Link>
-    //   <Link href='./tags'>Tags</Link>
-    // </div>
-
     <nav className="bg-white border-gray-200 px-2 sm:px-4 py-2.5 rounded dark:bg-gray-900">
       <div className="container flex flex-wrap items-center justify-between mx-auto">
         <a href="/" className="flex items-center">
@@ -24,12 +16,12 @@ export default function HomeHeader() {
           <ul className="flex flex-col p-4 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 md:mt-0 md:text-sm md:font-medium md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
             <li>
               <Link href="./new-article">
-                <a href="./new-article" className="block py-2 pl-3 pr-4 text-gray-700 rounded  md:border-0 md:hover:font-bold md:p-0 dark:text-gray-400">New Article</a>
+                <a className="block py-2 pl-3 pr-4 text-gray-700 rounded  md:border-0 md:hover:font-bold md:p-0 dark:text-gray-400">New Article</a>
               </Link>
             </li>
             <li>
               <Link href='./tags'>
-                <a href='./tags' className="block py-2 pl-3 pr-4 text-gray-700 rounded  md:border-0 md:hover:font-bold md:p-0 dark:text-gray-400">Tags</a>
+                <a className="block py-2 pl-3 pr-4 text-gray-700 rounded  md:border-0 md:hover:font-bold md:p-0 dark:text-gray-400">Tags</a>
               </Link>
             </li>
           </ul>

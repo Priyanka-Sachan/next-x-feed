@@ -1,10 +1,8 @@
 import Head from 'next/head'
 import Link from 'next/link';
-import { useRouter } from 'next/router';
 import getTags from './api/tags';
 
 export default function TagsPage(props) {
-  const router = useRouter();
 
   return (
     <div>
