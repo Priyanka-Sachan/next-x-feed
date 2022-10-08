@@ -6,14 +6,17 @@ import AllArticles from '../../components/AllArticles';
 export default function TaggedArticlePage(props) {
   const articles = props.articles;
   return (
-    <div>
+    <>
       <Head>
         <title>NextX</title>
         <meta name="description" content="Read about anything & everything from nextX Feed." />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <AllArticles articles={articles}></AllArticles>
-    </div>
+      <div className='container mx-auto prose prose:slate'>
+        <h1 className='mt-16'># {props.tag}</h1>
+        <AllArticles articles={articles}></AllArticles>
+      </div>
+    </>
   )
 }
 
@@ -34,6 +37,7 @@ export async function getStaticProps(context) {
   const articles = await getArticlesByTag(tag);
   return {
     props: {
+      tag: tag,
       articles: articles
     },
   }

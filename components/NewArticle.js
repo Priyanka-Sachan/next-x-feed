@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { TextInput, Button, MultiSelect, ActionIcon, SimpleGrid, Textarea } from '@mantine/core';
+import { TextInput, Button, MultiSelect, ActionIcon, Textarea } from '@mantine/core';
 import { ArrowRight } from 'tabler-icons-react';
 import RichTextEditor from './RichTextEditor';
 import styles from './NewArticle.module.css'
@@ -36,12 +36,7 @@ export default function NewArticle(props) {
   }
 
   return (
-    <SimpleGrid
-      cols={2}
-      spacing="lg"
-      breakpoints={[
-        { maxWidth: 755, cols: 1, spacing: 'sm' },
-      ]}>
+    <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
       <div>
         <img className={styles.coverImage} src={coverImage} />
         <TextInput ref={coverUrl}
@@ -61,8 +56,6 @@ export default function NewArticle(props) {
           styles={{
             input: {
               fontSize: '2em',
-              fontFamily: 'Lora',
-              fontStyle: 'italic',
               fontWeight: '600'
             },
           }}
@@ -101,6 +94,6 @@ export default function NewArticle(props) {
           readOnly={false} />
         <Button type="submit" fullWidth variant="default">Add</Button>
       </form>
-    </SimpleGrid>
+    </div>
   )
 }
