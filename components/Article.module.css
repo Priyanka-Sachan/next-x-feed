@@ -2,13 +2,6 @@
   width: 100%;
 }
 
-.title {
-  font-size: 2em;
-  font-family: 'Lora';
-  font-style: italic;
-  font-weight: 600;
-}
-
 .dateCreated{
   text-transform: uppercase;
   color: indianred;

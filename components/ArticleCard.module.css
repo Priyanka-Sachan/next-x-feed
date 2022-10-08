@@ -1,19 +1,18 @@
+.card{
+  margin-top: 16px;
+  margin-bottom: 16px;
+}
 .coverUrl{
   width: 100%;
-}
-
-.title {
-  font-size: 2em;
-  font-family: 'Lora';
-  font-style: italic;
-  font-weight: 600;
-}
-
-.dateCreated{
-  color: grey;
 }
 
 .subtitle {
   max-lines: 3;
   text-overflow: ellipsis;
+}
+
+.dateCreated{
+  text-transform: uppercase;
+  color: indianred;
+  font-weight: 600;
 }
