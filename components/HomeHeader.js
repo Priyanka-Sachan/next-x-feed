@@ -16,7 +16,7 @@ export default function HomeHeader() {
           <ul className="flex flex-col p-4 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 md:mt-0 md:text-sm md:font-medium md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
             <li>
               <Link href="./new-article">
-                <a className="block py-2 pl-3 pr-4 text-gray-700 rounded  md:border-0 md:hover:font-bold md:p-0 dark:text-gray-400">New Article</a>
+                <a className="block py-2 pl-3 pr-4 text-gray-700 rounded  md:border-0 md:hover:font-bold md:p-0 dark:text-gray-400">Create</a>
               </Link>
             </li>
             <li>
