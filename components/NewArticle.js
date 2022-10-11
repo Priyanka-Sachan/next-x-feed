@@ -1,20 +1,32 @@
-import { useEffect, useRef, useState } from "react";
-import { TextInput, Button, MultiSelect, ActionIcon, Textarea } from '@mantine/core';
-import { ArrowRight } from 'tabler-icons-react';
-import RichTextEditor from './RichTextEditor';
+import { useEffect, useRef, useState } from 'react'
+import {
+  TextInput,
+  Button,
+  MultiSelect,
+  ActionIcon,
+  Textarea,
+} from '@mantine/core'
+import { ArrowRight } from 'tabler-icons-react'
+import RichTextEditor from './RichTextEditor'
 import styles from './NewArticle.module.css'
 
 export default function NewArticle(props) {
-  const coverUrl = useRef('');
-  const [coverImage, setCoverImage] = useState('');
+  const coverUrl = useRef('')
+  const [coverImage, setCoverImage] = useState('')
   useEffect(() => {
-    setCoverImage(coverUrl.current.value);
-  }, [coverUrl.current.value]);
-  const title = useRef('');
-  const [allTags, setAllTags] = useState(['Head to Head', 'Months Past', 'History Matters', 'Out of the Margins', 'Behind the Times']);
-  const [tags, setTags] = useState([]);
-  const subtitle = useRef('');
-  const [content, setContent] = useState('');
+    setCoverImage(coverUrl.current.value)
+  }, [coverUrl.current.value])
+  const title = useRef('')
+  const [allTags, setAllTags] = useState([
+    'Head to Head',
+    'Months Past',
+    'History Matters',
+    'Out of the Margins',
+    'Behind the Times',
+  ])
+  const [tags, setTags] = useState([])
+  const subtitle = useRef('')
+  const [content, setContent] = useState('')
 
   function submitArticle(event) {
     event.preventDefault()
@@ -28,18 +40,23 @@ export default function NewArticle(props) {
       numFavourites: 0,
     }
     // console.log(article)
-    props.onAddArticle(article);
+    props.onAddArticle(article)
   }
 
   function updateCoverImage() {
-    setCoverImage(coverUrl.current.value)
+    if (coverUrl.current.value == '')
+      setCoverImage(
+        'https://img.freepik.com/premium-psd/clean-minimal-book-4x6-mockup-pink-blue-background-with-glasses-vase-mug-wooden-rocket_481141-771.jpg?w=2000'
+      )
+    else setCoverImage(coverUrl.current.value)
   }
 
   return (
     <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
       <div>
         <img className={styles.coverImage} src={coverImage} />
-        <TextInput ref={coverUrl}
+        <TextInput
+          ref={coverUrl}
           type="url"
           placeholder="Cover Url"
           required
@@ -47,7 +64,8 @@ export default function NewArticle(props) {
             <ActionIcon size={24} radius="xl" variant="filled">
               <ArrowRight size={18} onClick={updateCoverImage} />
             </ActionIcon>
-          } />
+          }
+        />
       </div>
       <form onSubmit={submitArticle}>
         <Textarea
@@ -56,12 +74,13 @@ export default function NewArticle(props) {
           styles={{
             input: {
               fontSize: '2em',
-              fontWeight: '600'
+              fontWeight: '600',
             },
           }}
           variant="unstyled"
           autosize
-          required />
+          required
+        />
         <Textarea
           ref={subtitle}
           placeholder="Subtitle"
@@ -69,13 +88,15 @@ export default function NewArticle(props) {
             input: {
               fontSize: '1.5em',
               fontFamily: 'Lora',
-              color: 'grey'
+              color: 'grey',
             },
           }}
           variant="unstyled"
           autosize
-          required />
-        <MultiSelect data={allTags}
+          required
+        />
+        <MultiSelect
+          data={allTags}
           placeholder="Tags"
           searchable
           creatable
@@ -83,16 +104,27 @@ export default function NewArticle(props) {
           onChange={setTags}
           getCreateLabel={(query) => `+ Create ${query}`}
           onCreate={(query) => setAllTags((current) => [...current, query])}
-          nothingFound="Nothing found..." variant="unstyled" size="lg" />
+          nothingFound="Nothing found..."
+          variant="unstyled"
+          size="lg"
+        />
         <RichTextEditor
           value={content}
           onChange={setContent}
           styles={{
-            root: { border: 'none', minHeight: '70vh', fontSize: '20px', fontFamily: 'Lato' },
+            root: {
+              border: 'none',
+              minHeight: '70vh',
+              fontSize: '20px',
+              fontFamily: 'Lato',
+            },
             toolbarInner: { justifyContent: 'center' },
           }}
-          readOnly={false} />
-        <Button type="submit" fullWidth variant="default">Add</Button>
+          readOnly={false}
+        />
+        <Button type="submit" fullWidth variant="default">
+          Add
+        </Button>
       </form>
     </div>
   )

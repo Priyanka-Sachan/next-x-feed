@@ -1,12 +1,14 @@
-import { MongoClient } from 'mongodb';
+import { MongoClient } from 'mongodb'
 
 export default async function getArticles() {
   try {
-    const client = await MongoClient.connect('mongodb+srv://author:UqQHha2e12qbius6@cluster0.58skw0h.mongodb.net/articles?retryWrites=true&w=majority');
-    const db = client.db();
-    const articlesCollection = db.collection('articles');
-    const result = await articlesCollection.find().toArray();
-    client.close();
+    const client = await MongoClient.connect(
+      'mongodb+srv://author:UqQHha2e12qbius6@cluster0.58skw0h.mongodb.net/articles?retryWrites=true&w=majority'
+    )
+    const db = client.db()
+    const articlesCollection = db.collection('articles')
+    const result = await articlesCollection.find().toArray()
+    client.close()
     const articles = result.map((article) => ({
       id: article._id.toString(),
       coverUrl: article.coverUrl,
@@ -15,9 +17,9 @@ export default async function getArticles() {
       tags: article.tags,
       subtitle: article.subtitle,
       content: article.content,
-      numFavourites: article.numFavourites
+      numFavourites: article.numFavourites,
     }))
-    return articles;
+    return articles
   } catch (e) {
     console.log(e)
   }
@@ -25,11 +27,15 @@ export default async function getArticles() {
 
 export async function getArticlesByTag(tag) {
   try {
-    const client = await MongoClient.connect('mongodb+srv://author:UqQHha2e12qbius6@cluster0.58skw0h.mongodb.net/articles?retryWrites=true&w=majority');
-    const db = client.db();
-    const articlesCollection = db.collection('articles');
-    const result = await articlesCollection.find({ tags: { $all: [tag] } }).toArray()
-    client.close();
+    const client = await MongoClient.connect(
+      'mongodb+srv://author:UqQHha2e12qbius6@cluster0.58skw0h.mongodb.net/articles?retryWrites=true&w=majority'
+    )
+    const db = client.db()
+    const articlesCollection = db.collection('articles')
+    const result = await articlesCollection
+      .find({ tags: { $all: [tag] } })
+      .toArray()
+    client.close()
     const articles = result.map((article) => ({
       id: article._id.toString(),
       coverUrl: article.coverUrl,
@@ -38,9 +44,9 @@ export async function getArticlesByTag(tag) {
       tags: article.tags,
       subtitle: article.subtitle,
       content: article.content,
-      numFavourites: article.numFavourites
+      numFavourites: article.numFavourites,
     }))
-    return articles;
+    return articles
   } catch (e) {
     console.log(e)
   }
@@ -48,18 +54,18 @@ export async function getArticlesByTag(tag) {
 
 export async function getArticleIds() {
   try {
-    const client = await MongoClient.connect('mongodb+srv://author:UqQHha2e12qbius6@cluster0.58skw0h.mongodb.net/articles?retryWrites=true&w=majority');
-    const db = client.db();
-    const articlesCollection = db.collection('articles');
-    const result = await articlesCollection.find({ _id: 1 }).toArray();
-    client.close();
+    const client = await MongoClient.connect(
+      'mongodb+srv://author:UqQHha2e12qbius6@cluster0.58skw0h.mongodb.net/articles?retryWrites=true&w=majority'
+    )
+    const db = client.db()
+    const articlesCollection = db.collection('articles')
+    const result = await articlesCollection.find({ _id: 1 }).toArray()
+    client.close()
     const ids = result.map((article) => ({
-      id: article._id.toString()
+      id: article._id.toString(),
     }))
-    return ids;
+    return ids
   } catch (e) {
     console.log(e)
   }
 }
-
-
