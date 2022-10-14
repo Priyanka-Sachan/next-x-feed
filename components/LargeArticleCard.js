@@ -1,6 +1,6 @@
 import Link from 'next/link'
 
-export default function ArticleCard(props) {
+export default function LargeArticleCard(props) {
   const article = props.article
   var options = { year: 'numeric', month: 'long', day: 'numeric' }
   const dateCreated = new Date(article.dateCreated)

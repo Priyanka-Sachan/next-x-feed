@@ -15,10 +15,10 @@ export default function TaggedArticlePage(props) {
         />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <div className="container mx-auto prose prose:slate">
+      <div className="ml-40 prose prose:slate">
         <h1 className="mt-16"># {props.tag}</h1>
-        <AllArticles articles={articles}></AllArticles>
       </div>
+      <AllArticles articles={articles}></AllArticles>
     </>
   )
 }
