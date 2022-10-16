@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react'
+import { useRef, useState } from 'react'
 import {
   TextInput,
   Button,
@@ -12,10 +12,9 @@ import styles from './NewArticle.module.css'
 
 export default function NewArticle(props) {
   const coverUrl = useRef('')
-  const [coverImage, setCoverImage] = useState('')
-  useEffect(() => {
-    setCoverImage(coverUrl.current.value)
-  }, [coverUrl.current.value])
+  const [coverImage, setCoverImage] = useState(
+    'https://img.freepik.com/premium-psd/clean-minimal-book-4x6-mockup-pink-blue-background-with-glasses-vase-mug-wooden-rocket_481141-771.jpg?w=2000'
+  )
   const title = useRef('')
   const [allTags, setAllTags] = useState([
     'Head to Head',
@@ -39,7 +38,6 @@ export default function NewArticle(props) {
       content: content,
       numFavourites: 0,
     }
-    // console.log(article)
     props.onAddArticle(article)
   }
 
