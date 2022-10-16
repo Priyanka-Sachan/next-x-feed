@@ -1,6 +1,6 @@
 import Head from 'next/head'
-import AllArticles from '../components/AllArticles'
-import getArticles from './api/articles'
+import LatestArticles from '../components/LatestArticles'
+import { getLatestArticles } from './api/articles'
 import HomeHeader from '../components/HomeHeader'
 
 export default function Home(props) {
@@ -15,14 +15,17 @@ export default function Home(props) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <HomeHeader />
-      <AllArticles articles={props.articles} />
+      <div className="container mx-auto prose prose:slate">
+        <h1>Latest Reads</h1>
+      </div>
+      <LatestArticles articles={props.articles} />
     </div>
   )
 }
 
 // Runs during build time only - can be async
 export async function getStaticProps() {
-  const articles = await getArticles()
+  const articles = await getLatestArticles()
   return {
     props: { articles: articles },
     // Rebuilds every 36000 sec on server

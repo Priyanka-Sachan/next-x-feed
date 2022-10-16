@@ -42,6 +42,13 @@ export default function HomeHeader() {
               </Link>
             </li>
             <li>
+              <Link href="./all-articles">
+                <a className="block py-2 pl-3 pr-4 text-gray-700 rounded  md:border-0 md:hover:font-bold md:p-0 dark:text-gray-400">
+                  All
+                </a>
+              </Link>
+            </li>
+            <li>
               <Link href="./tags">
                 <a className="block py-2 pl-3 pr-4 text-gray-700 rounded  md:border-0 md:hover:font-bold md:p-0 dark:text-gray-400">
                   Tags
