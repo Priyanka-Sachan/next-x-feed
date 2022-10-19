@@ -1,7 +1,8 @@
 import Head from 'next/head'
-import { getArticleById } from '../api/article'
+import { getArticleById, getRelatedArticles } from '../api/article'
 import Article from '../../components/Article'
 import { getArticleIds } from '../api/articles'
+import RelatedArticles from '../../components/RelatedArticles'
 
 export default function ArticlePage(props) {
   const article = props.article
@@ -16,6 +17,11 @@ export default function ArticlePage(props) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Article article={article} />
+      {props.relatedArticles.length == 0 ? (
+        <h2>None</h2>
+      ) : (
+        <RelatedArticles articles={props.relatedArticles} />
+      )}
     </div>
   )
 }
@@ -40,9 +46,12 @@ export async function getStaticPaths() {
 export async function getStaticProps(context) {
   const id = context.params.id
   const article = await getArticleById(id)
+  const relatedArticles = await getRelatedArticles(article.tags)
+  console.log(relatedArticles)
   return {
     props: {
       article: article,
+      relatedArticles: relatedArticles == undefined ? [] : relatedArticles,
     },
   }
 }

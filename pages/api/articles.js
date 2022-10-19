@@ -32,7 +32,11 @@ export async function getLatestArticles() {
     )
     const db = client.db()
     const articlesCollection = db.collection('articles')
-    const result = await articlesCollection.find().sort({_id:-1}).limit(3).toArray();
+    const result = await articlesCollection
+      .find()
+      .sort({ _id: -1 })
+      .limit(3)
+      .toArray()
     client.close()
     const articles = result.map((article) => ({
       id: article._id.toString(),
