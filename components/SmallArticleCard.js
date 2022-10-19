@@ -5,32 +5,32 @@ export default function SmallArticleCard(props) {
   var options = { year: 'numeric', month: 'long', day: 'numeric' }
   const dateCreated = new Date(article.dateCreated)
   return (
-    <div class="py-8 flex flex-wrap md:flex-nowrap">
-      <div class="md:w-64 md:mb-0 mb-6 flex-shrink-0 flex flex-col">
-        <span class="font-semibold title-font text-gray-700 uppercase">
+    <div className="py-8 flex flex-wrap md:flex-nowrap">
+      <div className="md:w-64 md:mb-0 mb-6 flex-shrink-0 flex flex-col">
+        <span className="font-semibold title-font text-gray-700 uppercase">
           {article.tags[0]}
         </span>
-        <span class="mt-1 text-gray-500 text-sm">
+        <span className="mt-1 text-gray-500 text-sm">
           {' '}
           {dateCreated.toLocaleDateString('en-US', options)}
         </span>
       </div>
-      <div class="md:flex-grow">
-        <h2 class="text-2xl font-medium text-gray-900 title-font mb-2 mt-1">
+      <div className="md:flex-grow">
+        <h2 className="text-2xl font-medium text-gray-900 title-font mb-2 mt-1">
           {article.title}
         </h2>
-        <p class="leading-relaxed">{article.subtitle}</p>
+        <p className="leading-relaxed">{article.subtitle}</p>
         <Link href={`/articles/${article.id}`}>
-          <a class="text-red-600 inline-flex items-center mt-4">
+          <a className="text-red-600 inline-flex items-center mt-4">
             Learn More
             <svg
-              class="w-4 h-4 ml-2"
+              className="w-4 h-4 ml-2"
               viewBox="0 0 24 24"
               stroke="currentColor"
-              stroke-width="2"
+              strokeWidth="2"
               fill="none"
-              stroke-linecap="round"
-              stroke-linejoin="round"
+              strokeLinecap="round"
+              strokeLinejoin="round"
             >
               <path d="M5 12h14"></path>
               <path d="M12 5l7 7-7 7"></path>
